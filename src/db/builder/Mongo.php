@@ -576,8 +576,8 @@ class Mongo
             $groups['_id'][$field] = '$' . $field;
         }
 
-        foreach ($aggregate as $fun => $field) {
-            $groups[$field . '_' . $fun] = ['$' . $fun => '$' . $field];
+        foreach ($aggregate as $alias => $agg) {
+            $groups[$alias] = ['$' . $agg[0] => !is_numeric($agg[1]) ? '$' . $agg[1] : $agg[1]];
         }
 
         $pipeline = [
