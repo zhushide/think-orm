@@ -284,9 +284,9 @@ class Mongo extends Connection
      * @throws ConnectionException
      * @throws RuntimeException
      */
-    public function query(MongoQuery $query)
+    public function query(MongoQuery $query, BaseQuery $q)
     {
-        return $this->mongoQuery($this->newQuery(), $query);
+        return $this->mongoQuery($q, $query);
     }
 
     /**
@@ -300,9 +300,9 @@ class Mongo extends Connection
      * @throws RuntimeException
      * @throws BulkWriteException
      */
-    public function execute(BulkWrite $bulk)
+    public function execute(BulkWrite $bulk, BaseQuery $q)
     {
-        return $this->mongoExecute($this->newQuery(), $bulk);
+        return $this->mongoExecute($q, $bulk);
     }
 
     /**
